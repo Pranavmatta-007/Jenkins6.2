@@ -25,13 +25,13 @@ pipeline {
         success {
             emailext body: "Pipeline successful. See attached logs for details.",
                     subject: "Pipeline Success",
-                    to: "pranav4874.be@chitkara.edu.in",
+                    to: "pranav4874.be22@chitkara.edu.in",
                     attachLog: true
         }
         failure {
             emailext body: "Pipeline failed. See attached logs for details.",
                     subject: "Pipeline Failure",
-                    to: "pranav4874.be@chitkara.edu.in",
+                    to: "pranav4874.be22@chitkara.edu.in",
                     attachLog: true
         }
     }
