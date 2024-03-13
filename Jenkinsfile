@@ -2,21 +2,45 @@ pipeline {
     agent any
     
     stages {
-        stage('Stage 1') {
+        stage('Build') {
             steps {
-                echo "Hello from Stage 1!"
+                echo 'During this stage,the "npm install" command is used to install the dependencies and the "npm run build" command is used to optimise and bundle the React application in preparation for production deployment.'
             }
         }
-        
-        stage('Stage 2') {
+
+        stage('Unit Tests') {
             steps {
-                echo "Hello from Stage djd2!"
+                echo 'This stage runs unit tests for the React application using Jest to ensure the individual components function as expected and Cypress for integration testing.'
             }
         }
-        
-        stage('Stage 3') {
+
+        stage('Code Analysis') {
             steps {
-                echo "Hello from Stage 3!"
+                echo 'This stage is done with the help of eslint tool.'
+            }
+        }
+
+        stage('Security Scan') {
+            steps {
+                echo 'This stage performs a security scan on the React application using "Synk" to identify potential vulnerabilities and security risks.'
+            }
+        }
+
+        stage('Deploy to Staging') {
+            steps {
+                echo 'This stage deploys the built React application to a staging server, netlify'
+            }
+        }
+
+        stage('Integration Tests on Staging') {
+            steps {
+                echo 'This stage runs integration tests on the React application deployed to the staging environment using Jest to ensure the application functions as expected in a production-like environment.'
+            }
+        }
+
+        stage('Deploy to Production') {
+            steps {
+                echo 'This stage deploys the built React application to a staging server, netlify'
             }
         }
     }
