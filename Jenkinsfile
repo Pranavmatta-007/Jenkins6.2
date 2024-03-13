@@ -8,9 +8,23 @@ pipeline {
             }
         }
 
-        stage('Unit Tests') {
+        stage('Unit and integration Tests') {
             steps {
                 echo 'This stage runs unit tests for the React application using Jest to ensure the individual components function as expected and Cypress for integration testing.'
+            }
+            post {
+                success {
+                    emailext body: "Unit and Integration Tests stage successful. See attached logs for details.",
+                            subject: "Unit and Integration Tests Success",
+                            to: "pranav4874.be22@chitkara.edu.in",
+                            attachLog: true
+                }
+                failure {
+                    emailext body: "Unit and Integration Tests stage failed. See attached logs for details.",
+                            subject: "Unit and Integration Tests Failure",
+                            to: "pranav4874.be22@chitkara.edu.in",
+                            attachLog: true
+                }
             }
         }
 
@@ -23,6 +37,20 @@ pipeline {
         stage('Security Scan') {
             steps {
                 echo 'This stage performs a security scan on the React application using "Synk" to identify potential vulnerabilities and security risks.'
+            }
+            post {
+                success {
+                    emailext body: "Security Scan stage successful. See attached logs for details.",
+                            subject: "Security Scan Success",
+                            to: "pranav4874.be22@chitkara.edu.in",
+                            attachLog: true
+                }
+                failure {
+                    emailext body: "Security Scan stage failed. See attached logs for details.",
+                            subject: "Security Scan Failure",
+                            to: "pranav4874.be22@chitkara.edu.in",
+                            attachLog: true
+                }
             }
         }
 
@@ -45,18 +73,4 @@ pipeline {
         }
     }
     
-    post {
-        success {
-            emailext body: "Pipeline successful. See attached logs for details.",
-                    subject: "Pipeline Success",
-                    to: "pranav4874.be22@chitkara.edu.in",
-                    attachLog: true
-        }
-        failure {
-            emailext body: "Pipeline failed. See attached logs for details.",
-                    subject: "Pipeline Failure",
-                    to: "pranav4874.be22@chitkara.edu.in",
-                    attachLog: true
-        }
-    }
 }
